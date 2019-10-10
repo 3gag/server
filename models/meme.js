@@ -5,8 +5,11 @@ const memeSchema = new Schema({
   img: {
     type : String
   },
-  userId:{
+  userId: {
     type: mongoose.ObjectId, ref:"User"
+  },
+  title: {
+    type: String
   } 
 }, { timestamps: true })
 

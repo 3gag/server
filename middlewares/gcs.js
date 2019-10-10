@@ -9,12 +9,10 @@ const storage = new Storage({
 const bucket = storage.bucket(CLOUD_BUCKET)
 
 const getPublicUrl = (filename) => {
-  console.log(`--------------public url---------------`)
   return `https://storage.googleapis.com/${CLOUD_BUCKET}/${filename}`
 }
 
 module.exports = (req, res, next) => {
-  
   
   if(!req.file){
     return next({
