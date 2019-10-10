@@ -5,7 +5,7 @@ module.exports = {
     tokenGenerate: (payload) => {
         return jwt.sign(payload, process.env.JWT_SECRET)
     },
-    varify: (token) => {
+    verifyToken: (token) => {
         return jwt.verify(token, JWT_SECRET)
     }
 }
