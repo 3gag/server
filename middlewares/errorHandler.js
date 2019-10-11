@@ -19,5 +19,9 @@ module.exports = (err, req, res, next) => {
       break;
   }
   res.status(status).json({ code: status, message })
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> .

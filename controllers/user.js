@@ -6,6 +6,10 @@ const { OAuth2Client } = require('google-auth-library')
 
 class UserController {
     static register(req, res, next) {
+<<<<<<< HEAD
+=======
+        console.log(`masukkk register`);
+>>>>>>> .
         const { name, email, password } = req.body
 
         User.create({ name, email, password })
@@ -28,7 +32,10 @@ class UserController {
                     let payload = {
                         id: user._id
                     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> .
                     let token = tokenGenerate(payload)
                     res.status(200).json({ token })
                 } else {
