@@ -17,7 +17,9 @@ class MemeController {
   static find(req, res, next) {
     Meme.find()
       .populate('userId', '-password')
-      .sort({ createdAt: 'desc' })
+
+      .sort({createdAt: 'desc'})
+
       .then(dataMeme => {
         res.status(200).json(dataMeme)
       })
@@ -31,7 +33,10 @@ class MemeController {
         gcsDelete(result.img)
         return Meme.findByIdAndDelete(id)
       })
+
+
       .then(() => {
+
         res.status(200).json('Meme Deleted')
       })
       .catch(next)
