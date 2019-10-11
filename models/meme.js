@@ -6,13 +6,12 @@ const memeSchema = new Schema({
     type : String
   },
   userId: {
-    type: mongoose.ObjectId, ref:"User"
+    type: Schema.Types.ObjectId, ref:"User"
   },
   title: {
     type: String
-  } 
+  }
 }, { timestamps: true })
 
 const Meme = mongoose.model('Meme', memeSchema)
 module.exports = Meme
-
