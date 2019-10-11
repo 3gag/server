@@ -20,4 +20,3 @@ module.exports = (err, req, res, next) => {
   }
   res.status(status).json({ code: status, message })
 }
-
