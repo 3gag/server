@@ -6,5 +6,3 @@ routes.use('/user', userRoutes)
 routes.use('/meme', memeRoutes)
 
 module.exports = routes
-
-

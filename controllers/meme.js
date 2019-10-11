@@ -18,6 +18,8 @@ class MemeController {
 
   static find(req, res, next) {
     Meme.find()
+      .populate('userId', '-password')
+      .sort({createdAt: 'desc'})
       .then(dataMeme => {
         res.status(200).json(dataMeme)
       })
