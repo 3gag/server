@@ -13,15 +13,15 @@ class MemeController {
       .catch( next )
   }
 
-  static find( req, res, next){
+  static find(req, res, next) {
     Meme.find()
       .then(dataMeme => {
         res.status(200).json(dataMeme)
       })
-      .catch( next )
+      .catch(next)
   }
 
-  static delete( req, res, next){
+  static delete(req, res, next) {
     let id = req.params.id
     Meme.findById(id)
       .then(result => {
@@ -31,7 +31,7 @@ class MemeController {
       .then( () => {
         res.status(200).json('Meme Deleted')
       })
-      .catch( next )
+      .catch(next)
   }
 }
 
