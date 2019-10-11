@@ -2,7 +2,6 @@ const Meme = require('../models/meme')
 const gcsDelete = require('../helpers/gcsdelete')
 
 class MemeController {
-
   static create(req, res, next) {
     const { title } = req.body
     const img = req.file.cloudStoragePublicUrl
@@ -18,7 +17,9 @@ class MemeController {
   static find(req, res, next) {
     Meme.find()
       .populate('userId', '-password')
+
       .sort({createdAt: 'desc'})
+
       .then(dataMeme => {
         res.status(200).json(dataMeme)
       })
@@ -33,7 +34,9 @@ class MemeController {
         return Meme.findByIdAndDelete(id)
       })
 
-      .then( () => {
+
+      .then(() => {
+
         res.status(200).json('Meme Deleted')
       })
       .catch(next)
