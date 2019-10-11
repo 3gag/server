@@ -1,40 +1,23 @@
-function errorHandler(err, req, res, next) {
-  console.log(err);
-  if (err.name == "JsonWebTokenError") {
-    res.status(401).json({
-      message: ["invalid token"]
-    });
-  } else if (err.name == "ValidationError") {
-    let msgValidation = [];
-    for (r in err.errors) {
-      msgValidation.push(err.errors[r].message);
-    }
-    res.status(400).json({
-      message: msgValidation
-    });
-  } else if (err.name == "CastError") {
-    return res.status(400).send({
-      message: ["Invalid ID"]
-    });
-  } else if (err.statusCode == 404 && err.msg === undefined) {
-    res.status(404).json({
-      message: ["Data not found"]
-    });
-  } else {
-    let myErr = [err.msg];
-    if (Array.isArray(err.msg)) {
-      myErr = err.msg;
-    }
-    message = ''
-    if (err.msg) {
-      message = myErr
-    } else {
-      message = ["Internal server error"]
-    }
-
-    res.status(err.statusCode || 500).json({
-      message
-    });
+module.exports = (err, req, res, next) => {
+  if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'testing') console.log(err)
+  let status
+  let message
+  switch (err.name) {
+    case 'ValidationError':
+      status = 400
+      let arr = []
+      for (const key in err.errors) { arr.push(err.errors[key].message) }
+      message = arr
+      break;
+    case 'JsonWebTokenError':
+      status = 401
+      message = err.message
+      break;
+    default:
+      status = err.status || 500
+      message = err.message || err.msg || 'Internal Server Error'
+      break;
   }
+  res.status(status).json({ code: status, message })
 }
-module.exports = errorHandler;
+

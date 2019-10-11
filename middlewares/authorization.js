@@ -1,8 +1,8 @@
-const Todo = require('../models/todo')
+const Meme = require('../models/meme')
 
 const authorization = (req, res, next) => {
   const _id = req.params.id
-  Todo.findOne ({ _id })
+  Meme.findOne ({ _id })
   .then(data => {
     console.log(req.user.id)
     console.log(data.userId)
