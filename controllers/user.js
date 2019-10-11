@@ -28,7 +28,6 @@ class UserController {
                     let payload = {
                         id: user._id
                     }
-
                     let token = tokenGenerate(payload)
                     res.status(200).json({ token })
                 } else {
