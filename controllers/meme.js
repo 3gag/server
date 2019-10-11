@@ -14,6 +14,7 @@ class MemeController {
       .catch(next)
   }
 
+
   static find(req, res, next) {
     Meme.find()
       .then(dataMeme => {
