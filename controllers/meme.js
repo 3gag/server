@@ -2,18 +2,8 @@ const Meme = require('../models/meme')
 const gcsDelete = require('../helpers/gcsdelete')
 
 class MemeController {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  static create(req, res, next) {
-    res.status(200).json(req.file)
-    // let { img } = req.body
-    const img = req.file.cloudStoragePublicUrl
-    Meme.create({ img })
-      .then(dataCreate => {
-        res.status(201).json(dataCreate)
-      })
-      .catch(next)
-=======
+
+ 
   static create( req, res, next){
     const { title } = req.body
     const img = req.file.cloudStoragePublicUrl
@@ -23,19 +13,8 @@ class MemeController {
         res.status(200).json(dataCreate)
       })
       .catch( next )
->>>>>>> b1f8fbc802db6416734fd64de0cc0b2d14568e02
-=======
-  static create(req, res, next) {
-    const { title } = req.body
-    const img = req.file.cloudStoragePublicUrl
-    const userId = req.user.id
-    Meme.create({ title, img, userId })
-      .then(dataCreate => {
-        res.status(200).json(dataCreate)
-      })
-      .catch(next)
->>>>>>> .
   }
+
 
   static find(req, res, next) {
     Meme.find()
@@ -47,37 +26,17 @@ class MemeController {
 
   static delete(req, res, next) {
     let id = req.params.id
-<<<<<<< HEAD
-<<<<<<< HEAD
-    Meme.finOneAndRemove({ _id: id })
-      .then(deleteMeme => {
-        res.status(201).json(deleteMeme)
-=======
-=======
->>>>>>> .
     Meme.findById(id)
       .then(result => {
         gcsDelete(result.img)
         return Meme.findByIdAndDelete(id)
       })
-<<<<<<< HEAD
       .then( () => {
         res.status(200).json('Meme Deleted')
->>>>>>> b1f8fbc802db6416734fd64de0cc0b2d14568e02
-      })
-      .catch(next)
-  }
-<<<<<<< HEAD
 
-=======
->>>>>>> b1f8fbc802db6416734fd64de0cc0b2d14568e02
-=======
-      .then(() => {
-        res.status(200).json('Meme Deleted')
       })
       .catch(next)
   }
->>>>>>> .
 }
 
 module.exports = MemeController
